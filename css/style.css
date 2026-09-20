@@ -369,7 +369,81 @@ label.label-otm{
   display:block;
 }
 
-/* Accessible focus states */
+/* ---------- Tombol WhatsApp mengambang ---------- */
+.wa-mengambang{
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+  z-index: 999;
+  transition: transform .2s ease;
+}
+.wa-mengambang:hover{ transform: scale(1.08); }
+.wa-mengambang svg{ width: 30px; height: 30px; }
+
+/* ---------- FAQ ---------- */
+.faq-item{
+  border-bottom: var(--garis);
+  padding: 1.1rem 0;
+}
+.faq-item summary{
+  cursor: pointer;
+  font-family: var(--font-judul);
+  font-size: 1.05rem;
+  color: var(--hutan-900);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{
+  content: "+";
+  font-size: 1.4rem;
+  color: var(--emas-dim);
+  margin-left: 1rem;
+}
+.faq-item[open] summary::after{ content: "\2212"; }
+.faq-item p{
+  margin-top: 0.75rem;
+  color: rgba(34,38,31,0.75);
+  font-size: 0.95rem;
+}
+
+/* ---------- Jadwal keberangkatan ---------- */
+.tabel-jadwal{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.tabel-jadwal th{
+  text-align: left;
+  font-family: var(--font-judul);
+  color: var(--hutan-900);
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--hutan-900);
+}
+.tabel-jadwal td{
+  padding: 0.85rem 1rem;
+  border-bottom: var(--garis);
+}
+.status-kuota{
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-lembut);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.status-kuota.tersedia{ background: rgba(44,68,51,0.15); color: var(--hutan-700); }
+.status-kuota.terbatas{ background: rgba(217,164,65,0.2); color: var(--emas-dim); }
+.status-kuota.penuh{ background: rgba(34,38,31,0.1); color: var(--kabut); }
 a:focus-visible, button:focus-visible, .nav-link:focus-visible{
   outline: 2px solid var(--emas);
   outline-offset: 2px;
