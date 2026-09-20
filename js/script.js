@@ -1,5 +1,5 @@
 // =========================================================
-// Open Trip Malang — interaksi umum
+// Yann Trip Malang — interaksi umum
 // =========================================================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -18,13 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Validasi sederhana form kontak (jika ada di halaman)
+  // Form kontak -> buka WhatsApp dengan pesan terisi otomatis
   var formKontak = document.getElementById("form-kontak");
   if (formKontak) {
     formKontak.addEventListener("submit", function (e) {
       e.preventDefault();
       var nama = document.getElementById("nama").value.trim();
       var whatsapp = document.getElementById("whatsapp").value.trim();
+      var paket = document.getElementById("paket").value;
+      var jumlah = document.getElementById("jumlah").value;
+      var catatan = document.getElementById("pesan").value.trim();
       var pesanEl = document.getElementById("pesan-status");
 
       if (nama.length < 3 || whatsapp.length < 8) {
@@ -34,9 +37,22 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      var teks =
+        "Halo Yann Trip Malang, saya ingin booking trip.\n\n" +
+        "Nama: " + nama + "\n" +
+        "No. WhatsApp: " + whatsapp + "\n" +
+        "Paket: " + paket + "\n" +
+        "Jumlah peserta: " + jumlah +
+        (catatan ? "\nCatatan: " + catatan : "");
+
+      var nomorAdmin = "628979158187";
+      var link = "https://wa.me/" + nomorAdmin + "?text=" + encodeURIComponent(teks);
+
       pesanEl.textContent =
-        "Terima kasih, " + nama + "! Tim kami akan segera menghubungi kamu lewat WhatsApp.";
+        "Membuka WhatsApp untuk mengirim permintaan booking kamu...";
       pesanEl.className = "mt-3 text-success";
+
+      window.open(link, "_blank");
       formKontak.reset();
     });
   }
