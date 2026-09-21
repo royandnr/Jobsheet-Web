@@ -283,7 +283,19 @@ section{ padding: 5rem 0; }
   height: 100%;
 }
 .kartu-testimoni p{ color: rgba(243,238,226,0.88); font-style: italic; }
-.kartu-testimoni .nama{ color: var(--emas); font-family: var(--font-judul); margin-top: 0.75rem; }
+.kartu-testimoni .baris-nama{ display:flex; align-items:center; gap:0.75rem; margin-top: 0.9rem; }
+.avatar-inisial{
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--emas);
+  color: var(--arang);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-judul);
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.kartu-testimoni .nama{ color: var(--emas); font-family: var(--font-judul); margin-top: 0; }
 .kartu-testimoni .asal{ color: rgba(243,238,226,0.6); font-size: 0.85rem; }
 
 /* ---------- CTA ---------- */
@@ -313,7 +325,31 @@ footer .footer-bawah{
 .header-halaman{
   background: var(--hutan-900);
   color: var(--kertas);
-  padding: 3.5rem 0;
+  padding: 4.5rem 0;
+  position: relative;
+}
+.header-halaman.header-foto{
+  background-size: cover;
+  background-position: center;
+}
+.header-halaman.header-foto::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,22,17,0.92), rgba(15,22,17,0.72));
+}
+.header-halaman .container-sempit{ position: relative; z-index: 1; }
+.header-foto-tentang{
+  background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Kawah-Ijen%20Indonesia%20The-sulfur-mine-at-the-floor-of-the-crater-01.jpg?width=1600");
+}
+.header-foto-paket{
+  background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Bromo%20Tengger%20Semeru%20National%20Park%20Java%20489.jpg?width=1600");
+}
+.header-foto-galeri{
+  background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Bromo%20sunrise%20May2014.jpg?width=1600");
+}
+.header-foto-kontak{
+  background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Danau%20Belerang%20Ijen.jpg?width=1600");
 }
 .header-halaman .eyebrow{ color: var(--emas); }
 .header-halaman h1{ color: var(--putih); font-size: clamp(2rem, 4vw, 3rem); }
@@ -455,6 +491,56 @@ label.label-otm{
   }
   .tabel-jadwal td:first-child::before{ content: none; }
 }
+
+/* ---------- Instagram teaser ---------- */
+.grid-instagram{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+.grid-instagram .ig-item{
+  aspect-ratio: 1/1;
+  border-radius: var(--radius-lembut);
+  overflow: hidden;
+  position: relative;
+}
+.grid-instagram .ig-item img{ width:100%; height:100%; object-fit:cover; display:block; }
+@media (max-width: 575px){
+  .grid-instagram{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------- Checklist barang bawaan ---------- */
+.kotak-checklist{
+  border: var(--garis);
+  border-left: 3px solid var(--emas);
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--radius-lembut);
+}
+.kotak-checklist ul{
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+.kotak-checklist li{
+  font-size: 0.92rem;
+  color: rgba(34,38,31,0.8);
+  position: relative;
+  padding-left: 1.35rem;
+}
+.kotak-checklist li::before{
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--emas-dim);
+  font-weight: 700;
+}
+@media (max-width: 480px){
+  .kotak-checklist ul{ grid-template-columns: 1fr; }
+}
+
 .wa-mengambang{
   position: fixed;
   right: 1.25rem;
