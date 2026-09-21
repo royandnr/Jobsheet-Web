@@ -369,7 +369,92 @@ label.label-otm{
   display:block;
 }
 
-/* ---------- Tombol WhatsApp mengambang ---------- */
+/* ---------- Bar aksi mengambang khusus HP ---------- */
+.bar-aksi-hp{
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 998;
+  background: var(--kertas);
+  border-top: 1px solid rgba(34,38,31,0.15);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+  padding: 0.6rem 0.9rem;
+  padding-bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+}
+.bar-aksi-hp .row-aksi{
+  display: flex;
+  gap: 0.6rem;
+}
+.bar-aksi-hp a{
+  flex: 1;
+  text-align: center;
+  padding: 0.7rem 0.5rem;
+  border-radius: var(--radius-lembut);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.bar-aksi-hp .aksi-wa{
+  background: #25D366;
+  color: #fff !important;
+}
+.bar-aksi-hp .aksi-paket{
+  background: var(--hutan-900);
+  color: var(--putih) !important;
+}
+
+/* ---------- Kartu geser (horizontal scroll snap) di HP ---------- */
+.geser-hp{
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
+}
+.geser-hp::-webkit-scrollbar{ display:none; }
+.geser-hp .item-geser{
+  scroll-snap-align: start;
+  flex: 0 0 82%;
+}
+
+/* ---------- Tabel jadwal jadi kartu di HP ---------- */
+@media (max-width: 640px){
+  .tabel-jadwal thead{ display:none; }
+  .tabel-jadwal, .tabel-jadwal tbody, .tabel-jadwal tr, .tabel-jadwal td{
+    display: block;
+    width: 100%;
+  }
+  .tabel-jadwal tr{
+    border: var(--garis);
+    border-radius: var(--radius-lembut);
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.9rem;
+  }
+  .tabel-jadwal td{
+    border-bottom: none;
+    padding: 0.3rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  .tabel-jadwal td:first-child{
+    font-family: var(--font-judul);
+    font-size: 1.05rem;
+    color: var(--hutan-900);
+    display: block;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    border-bottom: var(--garis);
+  }
+  .tabel-jadwal td::before{
+    content: attr(data-label);
+    color: var(--kabut);
+    font-size: 0.82rem;
+  }
+  .tabel-jadwal td:first-child::before{ content: none; }
+}
 .wa-mengambang{
   position: fixed;
   right: 1.25rem;
@@ -450,8 +535,70 @@ a:focus-visible, button:focus-visible, .nav-link:focus-visible{
 }
 
 @media (max-width: 767px){
-  .hero-stats{ gap: 1.5rem; flex-wrap: wrap; }
-  section{ padding: 3.25rem 0; }
+  /* Hero lebih ringkas & pas di layar HP */
+  .hero-foto{ min-height: auto; padding-top: 2.5rem; }
+  .hero{ padding-bottom: 1rem; }
+  .hero h1{ font-size: 2rem; max-width: 100%; }
+  .hero p.lead{ font-size: 1rem; max-width: 100%; }
+  .hero-stats{
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    padding: 1.1rem 1.25rem;
+  }
+  .hero-stats .angka{ font-size: 1.5rem; }
+
+  /* Section lebih rapat di HP */
+  section{ padding: 3rem 0; }
+  .section-judul{ max-width: 100%; }
+
+  /* Navbar: menu lebih besar & mudah disentuh */
+  .navbar-otm .nav-link{
+    margin-left: 0;
+    padding: 0.85rem 0.25rem;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(34,38,31,0.1);
+  }
+  .navbar-otm .btn-otm{
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem;
+  }
+
+  /* Tombol full-width supaya gampang disentuh */
+  .hero .btn-otm, .hero .btn-otm-outline{
+    width: 100%;
+    text-align: center;
+  }
+  .hero .d-flex.gap-3{ flex-direction: column; }
+
+  /* Bar aksi bawah muncul, tombol bulat WA disembunyikan biar tidak dobel */
+  .bar-aksi-hp{ display: block; }
+  .wa-mengambang{ display: none; }
+  body{ padding-bottom: 4.5rem; }
+
+  /* Kartu trip preview di beranda jadi geser horizontal */
+  .geser-aktif-hp{
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .geser-aktif-hp::-webkit-scrollbar{ display:none; }
+  .geser-aktif-hp > [class*="col-"]{
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
+
+  /* Galeri 2 kolom di HP biar lebih ringkas, bukan numpuk 1 kolom penuh */
+  .grid-galeri-hp > [class*="col-"]{
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
 }
-
-
